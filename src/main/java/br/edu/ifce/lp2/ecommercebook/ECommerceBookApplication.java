@@ -8,7 +8,7 @@ public class ECommerceBookApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ECommerceBookApplication.class, args);
-		System.out.println("testando");
+		System.out.println("testandos");
 	}
 
 }
