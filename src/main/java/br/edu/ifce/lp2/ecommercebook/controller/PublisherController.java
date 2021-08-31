@@ -1,10 +1,10 @@
 package br.edu.ifce.lp2.ecommercebook.controller;
 
 
+import br.edu.ifce.lp2.ecommercebook.model.entities.Publisher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.edu.ifce.lp2.model.entities.Publisher;
 
 @RestController
 @RequestMapping

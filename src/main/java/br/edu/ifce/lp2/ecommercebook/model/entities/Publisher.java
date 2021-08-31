@@ -26,8 +26,8 @@ public class Publisher {
         this.phone = phone;
     }
 
-    public void setName(int id){
-        this.id = id;
+    public void setName(String name){
+        this.name = name;
     }
 
 
