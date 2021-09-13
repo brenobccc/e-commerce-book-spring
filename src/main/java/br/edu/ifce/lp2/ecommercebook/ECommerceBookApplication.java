@@ -1,5 +1,4 @@
 package br.edu.ifce.lp2.ecommercebook;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

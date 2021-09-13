@@ -30,12 +30,12 @@ public class PublisherRepository {
          return data.values();
     }
 
-    public void delete(Long id){
-        data.remove(id);
+    public Publisher getById(Long id){
+        return data.get(id);
     }
 
 
-
-
-
+    public void delete(Long id){
+        data.remove(id);
+    }
 }
