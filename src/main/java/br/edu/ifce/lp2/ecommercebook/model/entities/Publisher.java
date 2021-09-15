@@ -1,11 +1,11 @@
 package br.edu.ifce.lp2.ecommercebook.model.entities;
 
 public class Publisher {
-    private Long id;
+    private String id;
     private String name;
     private String phone;
 
-    public Long getId(){
+    public String getId(){
         return id;
     }
 
@@ -18,7 +18,7 @@ public class Publisher {
     }
 
 
-    public void setId(Long id){
+    public void setId(String id){
         this.id = id;
     }
 
