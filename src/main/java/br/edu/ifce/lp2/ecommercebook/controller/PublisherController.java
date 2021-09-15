@@ -24,7 +24,7 @@ public class PublisherController {
     @PutMapping("{id}")
     public void put(@PathVariable String id, @RequestBody Publisher publisher){
         publisher.setId(id);
-        service.update(id,publisher );
+        service.update(id,publisher);
     }
 
     @GetMapping

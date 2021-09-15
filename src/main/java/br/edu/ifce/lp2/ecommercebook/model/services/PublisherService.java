@@ -14,21 +14,22 @@ public class PublisherService {
     @Autowired
     private PublisherRepository repository;
 
-    private boolean isExists(Publisher publisher) {
-        var allPublishers = repository.findAll();
-        if(allPublishers == null){
+    /*private boolean isExists(Publisher publisher) {
+        if(repository.findAll() == null){
             return false;
         }
-        return allPublishers
+        return repository.findAll()
                     .stream()
-                    .anyMatch(p -> publisher.getName().toLowerCase().trim().equals(publisher.getName().toLowerCase().trim()));
+                    .anyMatch(p -> p.getName().toLowerCase().trim().equals(publisher.getName().toLowerCase().trim()));
 
 
-    }
+    }*/
+
+
     public void create(Publisher publisher){
 
         //var allPublishers = repository.getAll();
-        if(!isExists(publisher)){
+        if(!repository.existsByName(publisher.getName())){
             repository.save(publisher);
         }
 
@@ -38,9 +39,10 @@ public class PublisherService {
 
     public void update(String id, Publisher publisher){
         var canUpdate = this.getById(id) != null;
-
+        System.out.println("valorrr:"+canUpdate);
         if(canUpdate){
-            if(!isExists(publisher)){
+            System.out.println("valor2"+!repository.existsByName(publisher.getName()));
+            if(!repository.existsByName(publisher.getName())){
                 repository.save(publisher);
             }
         }
