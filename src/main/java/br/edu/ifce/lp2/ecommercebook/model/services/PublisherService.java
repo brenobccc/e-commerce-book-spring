@@ -4,7 +4,10 @@ package br.edu.ifce.lp2.ecommercebook.model.services;
 import br.edu.ifce.lp2.ecommercebook.model.entities.Publisher;
 import br.edu.ifce.lp2.ecommercebook.model.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Collection;
 
@@ -53,8 +56,8 @@ public class PublisherService {
         return repository.save(publisherDatabase);
     }
 
-    public Collection<Publisher> getAll() {
-        return repository.findAll();
+    public Page<Publisher> getAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     public Publisher getById(String id) {
