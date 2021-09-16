@@ -26,26 +26,31 @@ public class PublisherService {
     }*/
 
 
-    public void create(Publisher publisher){
+    public Publisher create(Publisher publisher){
 
         //var allPublishers = repository.getAll();
-        if(!repository.existsByName(publisher.getName())){
-            repository.save(publisher);
+        if(repository.existsByName(publisher.getName())){
+            throw new RuntimeException("Nome já existe");
         }
 
+        return repository.save(publisher);
     }
 
 
 
-    public void update(String id, Publisher publisher){
-        var canUpdate = this.getById(id) != null;
-        System.out.println("valorrr:"+canUpdate);
-        if(canUpdate){
-            System.out.println("valor2"+!repository.existsByName(publisher.getName()));
-            if(!repository.existsByName(publisher.getName())){
-                repository.save(publisher);
-            }
+    public Publisher update(String id, Publisher publisher){
+        var publisherDatabase = this.getById(id);
+        //System.out.println("valorrr:"+canUpdate);
+
+        //System.out.println("valor2"+!repository.existsByName(publisher.getName()));
+        var p = repository.findByName(publisher.getName());
+        if(p != null && !p.getId().equals(id)){
+            throw new RuntimeException("Nome já existe");
         }
+        publisherDatabase.setName(publisher.getName());
+        publisherDatabase.setPhone(publisher.getPhone());
+
+        return repository.save(publisherDatabase);
     }
 
     public Collection<Publisher> getAll() {
@@ -53,10 +58,11 @@ public class PublisherService {
     }
 
     public Publisher getById(String id) {
-        return repository.findById(id).orElse(new Publisher());
+
+        return repository.findById(id).orElseThrow(()-> new RuntimeException("Publisher não existe"));
     }
 
     public void delete(String id) {
-        repository.deleteById(id);
+        repository.delete(getById(id));
     }
 }

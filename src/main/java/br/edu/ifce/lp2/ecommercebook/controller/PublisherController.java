@@ -1,6 +1,8 @@
 package br.edu.ifce.lp2.ecommercebook.controller;
 
 
+import br.edu.ifce.lp2.ecommercebook.controller.request.PublisherRequest;
+import br.edu.ifce.lp2.ecommercebook.controller.response.PublisherResponse;
 import br.edu.ifce.lp2.ecommercebook.model.entities.Publisher;
 import br.edu.ifce.lp2.ecommercebook.model.services.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,17 @@ public class PublisherController {
     private PublisherService service;
 
     @PostMapping
-    public void post(@RequestBody Publisher publisher){
-        service.create(publisher);
+    public PublisherResponse post(@RequestBody PublisherRequest request){
+        var publisher = request.toPublisher();
+
+        return new PublisherResponse().fromPublisher(service.create(publisher));
        // System.out.println("POST");
     }
     @PutMapping("{id}")
-    public void put(@PathVariable String id, @RequestBody Publisher publisher){
-        publisher.setId(id);
-        service.update(id,publisher);
+    public PublisherResponse put(@PathVariable String id, @RequestBody PublisherRequest request){
+        var publisher = request.toPublisher();
+
+        return new PublisherResponse().fromPublisher(service.update(id,publisher));
     }
 
     @GetMapping
